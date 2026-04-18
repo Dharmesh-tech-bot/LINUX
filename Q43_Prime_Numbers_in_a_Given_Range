@@ -1,0 +1,74 @@
+# Problem 
+
+Write a shell script named script.sh that reads two integers m and n from standard input (on separate lines) and prints all the prime numbers in the range from m to n (inclusive).
+
+📌 Requirements
+
+Read two integers from standard input:
+
+First line → m (starting value)
+
+Second line → n (ending value)
+
+Print all prime numbers between m and n (both inclusive).
+
+Each prime number must be printed on a new line.
+
+sample Input:
+
+2
+15
+
+output:
+
+2
+3
+5
+7
+11
+13
+
+
+
+
+
+#!/bin/bash
+
+# Read input
+read m
+read n
+
+# Function to check prime
+is_prime() {
+    num=$1
+    
+    if [ "$num" -le 1 ]; then
+        return 1
+    fi
+
+    for ((i=2; i*i<=num; i++))
+    do
+        if [ $((num % i)) -eq 0 ]; then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+# Loop from m to n (inclusive)
+for ((i=m; i<=n; i++))
+do
+    if is_prime "$i"; then
+        echo "$i"
+    fi
+done
+
+
+
+
+
+
+
+
+
